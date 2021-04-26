@@ -11,7 +11,7 @@ def getpw():
 
 def saltpw(passwort):
     salt = os.urandom(32)
-    hashingpw=passwort + salt
+    passwort=passwort + salt
     return passwort
 
 def hashpw_algorithm(passwort):
