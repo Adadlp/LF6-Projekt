@@ -31,5 +31,6 @@ def hashpw_algorithm(passwort):
 
 def pw_compare(passwort):
     with open(wort_liste) as LISTE:
+    for passwort in LISTE:
         error=1
     return error
