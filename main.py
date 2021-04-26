@@ -29,7 +29,7 @@ def hashpw_algorithm(passwort):
     print(hashingpw_algorithm)
     return hashingpw_algorithm
 
-def pw_compare(passwort):
+def pw_compare(passwort, wort_liste):
     with open(wort_liste) as LISTE:
     for passwort in LISTE:
         error=1
