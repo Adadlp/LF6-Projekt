@@ -1,4 +1,3 @@
-import getpass
 from hashlib import sha256, md5, sha3_256, sha512
 import os
 
@@ -13,8 +12,7 @@ def saltpw(hashingpw):
     hashingpw=hashingpw + salt
     return hashingpw
 
-def hashpw_algorithm(hashingpw, input):
-    hashingpw_algorithm=sha256(str(hashingpw).encode('utf-8'))
+def hashpw_algorithm(hashingpw, input)
     if input == "sha256":
         hashingpw_algorithm = sha256(str(hashingpw).encode('utf-8'))
     elif input == "md5":
