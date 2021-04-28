@@ -1,19 +1,8 @@
 from hashlib import sha256, md5, sha3_256, sha512
 import os
-import tkinter
+from tkinter import  *
 
 wort_liste = ""
-class Fenster:
-    '''    def open_Fenster(self):
-        Form = tkinter.Tk()
-        Form.title = "Test"
-        button1 = Form.Button(Form, text="QUIT", fg="red", command = Form.destroy())
-        button1.pack
-        Form.mainloop()
-
-    def open_File(self):
-        Form = tkinter.Tk()
-'''
 
 class Pw:
     def getpw(Self):
@@ -54,4 +43,10 @@ class Pw:
         '''
 
 if __name__ == "__main__":
-    Fenster.open_Fenster(0)
+    Fenster =Tk()
+    Fenster.title("Test")
+    Fenster.geometry("1280x720")
+    Button1 = Button(Fenster)
+    Button1.place(x = 5, y = 5, width = 100, height = 90)
+    Button1.pack
+    Fenster.mainloop()
