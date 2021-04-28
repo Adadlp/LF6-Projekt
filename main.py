@@ -1,8 +1,12 @@
 from hashlib import sha256, md5, sha3_256, sha512
 import os
-from tkinter import  *
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
-wort_liste = ""
+def Wortliste():
+    global wort_liste
+    x = os.environ['USERPROFILE'] + "\Desktop"
+    wort_liste = askopenfilename(initialdir= x, filetypes =(("Text File", "*.txt"),("All Files","*.*")), title = "Wähle die Passwortliste aus.")
 
 class Pw:
     def getpw(Self):
@@ -42,11 +46,25 @@ class Pw:
         return error
         '''
 
-if __name__ == "__main__":
-    Fenster =Tk()
-    Fenster.title("Test")
-    Fenster.geometry("1280x720")
-    Button1 = Button(Fenster)
-    Button1.place(x = 5, y = 5, width = 100, height = 90)
-    Button1.pack
-    Fenster.mainloop()
+
+#Wichtig
+wort_liste = ""
+o = Pw()
+#Fenster
+fenster = tk.Tk()
+fenster.title("Test")
+fenster.geometry("1280x720")
+#Schliess-Button
+button1 = tk.Button(master= fenster, bg = "light grey", relief = "groove", text = "Schließen", command = fenster.quit)
+button1.place(x = 1160, y = 620, width = 80, height = 80)
+button1.pack
+#Wortliste auswählen
+button2 = tk.Button(master= fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = Wortliste)
+button2.place(x = 100, y = 620, width = 80, height = 80)
+button2.pack
+#Passwort eingabe feld
+entry_pass = tk.Entry(master=fenster,show = "*")
+entry_pass.place(x = 100, y = 220, width = 200, height = 20)
+entry_pass.pack
+fenster.mainloop()
+
