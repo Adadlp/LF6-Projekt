@@ -23,6 +23,8 @@ def hintergrund():
     labelp.configure(bg=farbe)
     labeleinstell.configure(bg=farbe)
 
+def test():
+    print(hashalgowert.get())
 
 class Pw:
     def getpw(self):
@@ -86,15 +88,18 @@ draw.place(x=790, y=0, width=20, height=720)
 button1p1 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Wortliste \n auswählen", command="")
 button1p1.place(x=100, y=620, width=80, height=80)
 
-button1p2 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Wortliste \n auswählen", command="")
+button1p2 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Wortliste \n auswählen", command= test)
 button1p2.place(x=100, y=620, width=80, height=80)
+# Hash oder Passwort
 
 # Passwort eingabe feld
 eingabefeld = tk.Entry(master=fenster, show="*")
 eingabefeld.place(x=100, y=220, width=200, height=20)
-# Ausgabe
-ausgabelabel = tk.Label(master=fenster)
 
+# Ausgabe
+label_ausgabe = tk.Label(master=fenster, bg=farbe, relief="groove", anchor="w", justify="left")
+label_ausgabe.config(font=("Arial", 12))
+label_ausgabe.place(x=60, y=350, width=700, height=220)
 # Einstellungen
 labeleinstell = tk.Label(master=fenster, bg=farbe, text="Einstellungen")
 labeleinstell.config(font=("Arial", 18))
@@ -131,6 +136,7 @@ radio_4.config(font=("Arial", 12))
 radio_4.place(x=1060, y=290, width=100, height=40)
 
 radio_1.select()
+
 # Pfad zur Wortliste
 labelp = tk.Label(master=fenster, bg=farbe, text="Pfad zur derzeit angewendeten Wortliste:")
 labelp.config(font=('Arial', 15))
