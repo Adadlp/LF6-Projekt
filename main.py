@@ -52,19 +52,21 @@ wort_liste = ""
 o = Pw()
 #Fenster
 fenster = tk.Tk()
-fenster.title("Test")
+fenster.title("     Hasher / Dehasher")
 fenster.geometry("1280x720")
-#Schliess-Button
-button1 = tk.Button(master= fenster, bg = "light grey", relief = "groove", text = "Schließen", command = fenster.quit)
-button1.place(x = 1160, y = 620, width = 80, height = 80)
+fenster.iconphoto()
+button1 = tk.Button(master = fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = Wortliste)
+button1.place(x = 100, y = 620, width = 80, height = 80)
 button1.pack
 #Wortliste auswählen
-button2 = tk.Button(master= fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = Wortliste)
+button2 = tk.Button(master = fenster, bg = "light gray", relief = "groove", text = "Wortliste \n auswählen", command = Wortliste)
 button2.place(x = 100, y = 620, width = 80, height = 80)
 button2.pack
 #Passwort eingabe feld
-entry_pass = tk.Entry(master=fenster,show = "*")
-entry_pass.place(x = 100, y = 220, width = 200, height = 20)
-entry_pass.pack
+eingabefeld = tk.Entry(master = fenster,show = "*")
+eingabefeld.place(x = 100, y = 220, width = 200, height = 20)
+eingabefeld.pack
+#Ausgabe
+ausgabelabel = tk.Label(master= fenster, )
 fenster.mainloop()
 
