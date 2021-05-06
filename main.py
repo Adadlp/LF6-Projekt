@@ -2,15 +2,23 @@ from hashlib import sha256, md5, sha3_256, sha512
 import os
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
+import tkcolorpicker
+
 
 def wortliste():
     global wort_liste
     x = os.environ['USERPROFILE'] + "\Desktop"
-    wort_liste = askopenfilename(initialdir= x, filetypes =(("Text File", "*.txt"),("All Files","*.*")), title = "Wähle die Passwortliste aus.")
-    pflabel.configure(text = wort_liste)
+    wort_liste = askopenfilename(initialdir = x, filetypes =(("Text File", "*.txt"),("All Files","*.*")), title = "Wähle die Passwortliste aus.")
+    labelpf.configure(text = wort_liste)
 
 def hintergrund():
-    None
+    global farbe
+    farbe = tkcolorpicker.askcolor(color= farbe, parent = fenster)
+    farbe = str(farbe[1])
+    fenster.configure(bg = farbe)
+    labelpf.configure(bg = farbe)
+    labelp.configure(bg = farbe)
+    labeleinstell.configure(bg = farbe)
 
 class Pw:
     def getpw(Self):
@@ -54,7 +62,7 @@ class Pw:
 #Wichtig
 wort_liste = ""
 o = Pw()
-hintergd = '#FFFFFF'
+farbe = '#FFFFFF'
 
 #Fenster
 fenster = tk.Tk()
@@ -62,7 +70,7 @@ icon = tk.PhotoImage(file = 'ICON.png')
 fenster.title("     Hasher / Dehasher")
 fenster.geometry("1280x720")
 fenster.iconphoto(False, icon)
-fenster.configure(bg = hintergd)
+fenster.configure(bg = farbe)
 #wichtig 2
 
 # Hash oder dehash
@@ -86,20 +94,20 @@ eingabefeld.pack
 ausgabelabel = tk.Label(master= fenster, )
 
 #Einstellungen
-einstelllabel = tk.Label(master = fenster, bg = hintergd, text = "Einstellungen")
-einstelllabel.place(x = 840, y = 20, width = 400, height = 40)
-einstelllabel.config(font = ("Arial", 18))
-einstelllabel.pack
+labeleinstell = tk.Label(master = fenster, bg = farbe, text = "Einstellungen")
+labeleinstell.place(x = 840, y = 20, width = 400, height = 40)
+labeleinstell.config(font = ("Arial", 18))
+labeleinstell.pack
 #Pfad zur Wortliste
-plabel = tk.Label(master = fenster, bg = hintergd, text = "Pfad zur derzeit angewendeten Wortliste:")
-plabel.place(x = 840, y = 530, width = 400, height = 40)
-plabel.config(font = ('Arial', 15))
-plabel.pack
+labelp = tk.Label(master = fenster, bg = farbe, text = "Pfad zur derzeit angewendeten Wortliste:")
+labelp.place(x = 840, y = 530, width = 400, height = 40)
+labelp.config(font = ('Arial', 15))
+labelp.pack
 
-pflabel = tk.Label(master = fenster, bg = hintergd)
-pflabel.place(x = 840, y = 570, width = 400, height = 40)
-pflabel.config(font = ('Arial', 12))
-pflabel.pack
+labelpf = tk.Label(master = fenster, bg = farbe)
+labelpf.place(x = 840, y = 570, width = 400, height = 40)
+labelpf.config(font = ('Arial', 12))
+labelpf.pack
 
 #Hintergrundfarbe auswählen
 button3 = tk.Button(master = fenster, bg = "light gray", relief = "groove", text = "Hintergrundfarbe auswählen", command = hintergrund)
