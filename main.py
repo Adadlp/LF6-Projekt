@@ -16,6 +16,7 @@ def hintergrund():
     farbe = tkcolorpicker.askcolor(color= farbe, parent = fenster)
     farbe = str(farbe[1])
     fenster.configure(bg = farbe)
+    draw.configure(bg = farbe)
     labelpf.configure(bg = farbe)
     labelp.configure(bg = farbe)
     labeleinstell.configure(bg = farbe)
@@ -59,63 +60,82 @@ class Pw:
         '''
 
 
-#Wichtig
+#Variablen
+fenster = tk.Tk()
 wort_liste = ""
 o = Pw()
 farbe = '#FFFFFF'
+hashalgowert = tk.StringVar()
 
 #Fenster
-fenster = tk.Tk()
 icon = tk.PhotoImage(file = 'ICON.png')
 fenster.title("     Hasher / Dehasher")
 fenster.geometry("1280x720")
 fenster.iconphoto(False, icon)
 fenster.configure(bg = farbe)
-#wichtig 2
+
+#Linie
+draw = tk.Canvas(master = fenster, bg = farbe, bd = 0, relief = "flat", highlightthickness = 0)
+draw.create_line(10,0, 10, 720, width = 2, dash = (50,50))
+draw.place(x = 790, y = 0 , width = 20, height = 720)
 
 # Hash oder dehash
-button1p1 = tk.Button(master = fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = wortliste)
+button1p1 = tk.Button(master = fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = "" )
 button1p1.place(x = 100, y = 620, width = 80, height = 80)
-button1p1.pack
 
-button1p2 = tk.Button(master = fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = wortliste)
+button1p2 = tk.Button(master = fenster, bg = "light grey", relief = "groove", text = "Wortliste \n auswählen", command = "")
 button1p2.place(x = 100, y = 620, width = 80, height = 80)
-button1p2.pack
-#Wortliste auswählen
-button2 = tk.Button(master = fenster, bg = "light gray", relief = "groove", text = "Wortliste auswählen", command = wortliste)
-button2.place(x = 840, y = 70, width = 400, height = 40)
-button2.pack
 
 #Passwort eingabe feld
 eingabefeld = tk.Entry(master = fenster,show = "*")
 eingabefeld.place(x = 100, y = 220, width = 200, height = 20)
-eingabefeld.pack
 #Ausgabe
-ausgabelabel = tk.Label(master= fenster, )
+ausgabelabel = tk.Label(master = fenster)
 
 #Einstellungen
 labeleinstell = tk.Label(master = fenster, bg = farbe, text = "Einstellungen")
-labeleinstell.place(x = 840, y = 20, width = 400, height = 40)
 labeleinstell.config(font = ("Arial", 18))
-labeleinstell.pack
-#Pfad zur Wortliste
-labelp = tk.Label(master = fenster, bg = farbe, text = "Pfad zur derzeit angewendeten Wortliste:")
-labelp.place(x = 840, y = 530, width = 400, height = 40)
-labelp.config(font = ('Arial', 15))
-labelp.pack
+labeleinstell.place(x = 840, y = 20, width = 400, height = 40)
 
-labelpf = tk.Label(master = fenster, bg = farbe)
-labelpf.place(x = 840, y = 570, width = 400, height = 40)
-labelpf.config(font = ('Arial', 12))
-labelpf.pack
+#Wortliste auswählen
+button2 = tk.Button(master = fenster, bg = "light gray", relief = "groove", text = "Wortliste auswählen", command = wortliste)
+button2.place(x = 840, y = 70, width = 400, height = 40)
 
 #Hintergrundfarbe auswählen
 button3 = tk.Button(master = fenster, bg = "light gray", relief = "groove", text = "Hintergrundfarbe auswählen", command = hintergrund)
 button3.place(x = 840, y = 130, width = 400, height = 40)
-button3.pack
-#Linie
-#draw = tk.Canvas(master = fenster)
-#draw.create_line(800, 0, 800, 180, width = 2)
-#draw.pack()
+
+
+#Hashalgoritmus auswählen
+label_Hash = tk.Label(master = fenster, bg = farbe, text  = "Hashalgorithmen")
+label_Hash.config(font = ("Arial", 15))
+label_Hash.place(x = 840, y = 190, width = 400, height = 40)
+
+radio_1 = tk.Radiobutton(master = fenster, bg = farbe, anchor = "w", text = "SHA 256", variable = hashalgowert, value = "sha256")
+radio_1.config(font = ("Arial", 12))
+radio_1.place(x = 860, y = 240, width = 100, height = 40 )
+
+radio_2 = tk.Radiobutton(master = fenster, bg = farbe, anchor = "w", text = "SHA 512", variable = hashalgowert, value = "sha512")
+radio_2.config(font = ("Arial", 12))
+radio_2.place(x = 1060, y = 240, width = 100, height = 40 )
+
+radio_3 = tk.Radiobutton(master = fenster, bg = farbe, anchor = "w",  text = "MD5", variable = hashalgowert, value = "md5")
+radio_3.config(font = ("Arial", 12))
+radio_3.place(x = 860, y = 290, width = 100, height = 40 )
+
+radio_4 = tk.Radiobutton(master = fenster, bg = farbe, anchor = "w", text = "SHA3 256", variable = hashalgowert, value = "sha3")
+radio_4.config(font = ("Arial", 12))
+radio_4.place(x = 1060, y = 290, width = 100, height = 40 )
+
+radio_1.select()
+#Pfad zur Wortliste
+labelp = tk.Label(master = fenster, bg = farbe, text = "Pfad zur derzeit angewendeten Wortliste:")
+labelp.config(font = ('Arial', 15))
+labelp.place(x = 840, y = 530, width = 400, height = 40)
+
+labelpf = tk.Label(master = fenster, bg = farbe)
+labelpf.config(font = ('Arial', 12))
+labelpf.place(x = 840, y = 570, width = 400, height = 40)
+
 fenster.mainloop()
 
