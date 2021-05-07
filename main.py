@@ -23,8 +23,20 @@ def hintergrund():
     labelp.configure(bg=farbe)
     labeleinstell.configure(bg=farbe)
 
-def test():
-    print(hashalgowert.get())
+def passwort_hex():
+    test = int(passhex.get())
+    if test == 1:
+        button_de_hash_2.place_forget()
+        button_de_hash_1.place(x=100, y=620, width=80, height=80)
+        eingabefeld_1_1.place(x=60, y=60, width=700, height=220)
+        eingabefeld_1_2.place_forget()
+    elif test == 2:
+        button_de_hash_1.place_forget()
+        button_de_hash_2.place(x=100, y=620, width=80, height=80)
+        eingabefeld_1_2.place(x=60, y=60, width=700, height=220)
+        eingabefeld_1_1.place_forget()
+
+
 
 class Pw:
     def getpw(self):
@@ -71,6 +83,8 @@ wort_liste = ""
 o = Pw()
 farbe = '#FFFFFF'
 hashalgowert = tk.StringVar()
+passhex = tk.StringVar()
+entry_wert = tk.StringVar()
 
 # Fenster
 icon = tk.PhotoImage(file='ICON.png')
@@ -81,25 +95,40 @@ fenster.configure(bg=farbe)
 
 # Linie
 draw = tk.Canvas(master=fenster, bg=farbe, bd=0, relief="flat", highlightthickness=0)
-draw.create_line(10, 0, 10, 720, width=2, dash=(50, 50))
-draw.place(x=790, y=0, width=20, height=720)
+draw.create_line(1, 0, 1, 720, width=2, dash=(50, 50))
+draw.place(x=799, y=0, width=4, height=720)
 
 # Hash oder dehash
-button1p1 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Wortliste \n auswählen", command="")
-button1p1.place(x=100, y=620, width=80, height=80)
+button_de_hash_1 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Hash", command="")
+button_de_hash_1.place(x=100, y=620, width=80, height=80)
 
-button1p2 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Wortliste \n auswählen", command= test)
-button1p2.place(x=100, y=620, width=80, height=80)
+button_de_hash_2 = tk.Button(master=fenster, bg="light grey", relief="groove", text="Dehash", command="")
+button_de_hash_2.place(x=100, y=620, width=80, height=80)
+
 # Hash oder Passwort
+radio_1_1 = tk.Radiobutton(master=fenster, bg=farbe, anchor="nw", text="Passwort eingabe", variable=passhex, value=1, command=passwort_hex)
+radio_1_1.config(font=("Arial", 12))
+radio_1_1.place(x=560, y=240, width=200, height=40)
+
+radio_1_2 = tk.Radiobutton(master=fenster, bg=farbe, anchor="nw", text="Hexadezimal eingabe", variable=passhex, value=2, command=passwort_hex)
+radio_1_2.config(font=("Arial", 12))
+radio_1_2.place(x=560, y=280, width=200, height=40)
+
+radio_1_1.select()
 
 # Passwort eingabe feld
-eingabefeld = tk.Entry(master=fenster, show="*")
-eingabefeld.place(x=100, y=220, width=200, height=20)
+eingabefeld_1_1 = tk.Entry(master=fenster, show="*", textvariable=entry_wert, justify="left", relief="groove", bg=farbe, anchor="nw")
+eingabefeld_1_1.place(x=60, y=60, width=700, height=220)
+
+eingabefeld_1_2 = tk.Entry(master=fenster, textvariable=entry_wert, justify="left", relief="groove", bg=farbe, anchor="nw")
+eingabefeld_1_2.place(x=60, y=60, width=700, height=220)
+eingabefeld_1_2.place_forget()
 
 # Ausgabe
 label_ausgabe = tk.Label(master=fenster, bg=farbe, relief="groove", anchor="w", justify="left")
 label_ausgabe.config(font=("Arial", 12))
 label_ausgabe.place(x=60, y=350, width=700, height=220)
+
 # Einstellungen
 labeleinstell = tk.Label(master=fenster, bg=farbe, text="Einstellungen")
 labeleinstell.config(font=("Arial", 18))
@@ -119,23 +148,23 @@ label_Hash = tk.Label(master=fenster, bg=farbe, text="Hashalgorithmen")
 label_Hash.config(font=("Arial", 15))
 label_Hash.place(x=840, y=190, width=400, height=40)
 
-radio_1 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA 256", variable=hashalgowert, value="sha256")
-radio_1.config(font=("Arial", 12))
-radio_1.place(x=860, y=240, width=100, height=40)
+radio_2_1 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA 256", variable=hashalgowert, value="sha256")
+radio_2_1.config(font=("Arial", 12))
+radio_2_1.place(x=860, y=240, width=100, height=40)
 
-radio_2 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA 512", variable=hashalgowert, value="sha512")
-radio_2.config(font=("Arial", 12))
-radio_2.place(x=1060, y=240, width=100, height=40)
+radio_2_2 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA 512", variable=hashalgowert, value="sha512")
+radio_2_2.config(font=("Arial", 12))
+radio_2_2.place(x=1060, y=240, width=100, height=40)
 
-radio_3 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="MD5", variable=hashalgowert, value="md5")
-radio_3.config(font=("Arial", 12))
-radio_3.place(x=860, y=290, width=100, height=40)
+radio_2_3 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="MD5", variable=hashalgowert, value="md5")
+radio_2_3.config(font=("Arial", 12))
+radio_2_3.place(x=860, y=290, width=100, height=40)
 
-radio_4 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA3 256", variable=hashalgowert, value="sha3")
-radio_4.config(font=("Arial", 12))
-radio_4.place(x=1060, y=290, width=100, height=40)
+radio_2_4 = tk.Radiobutton(master=fenster, bg=farbe, anchor="w", text="SHA3 256", variable=hashalgowert, value="sha3")
+radio_2_4.config(font=("Arial", 12))
+radio_2_4.place(x=1060, y=290, width=100, height=40)
 
-radio_1.select()
+radio_2_1.select()
 
 # Pfad zur Wortliste
 labelp = tk.Label(master=fenster, bg=farbe, text="Pfad zur derzeit angewendeten Wortliste:")
