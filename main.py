@@ -4,7 +4,6 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename
 import tkcolorpicker
 
-
 def wortliste():
     global wort_liste
     x = str(os.environ['USERPROFILE'] + "\Desktop")
