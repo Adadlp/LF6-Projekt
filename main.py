@@ -4,6 +4,12 @@ import tkinter as tk
 from tkinter.filedialog import askopenfilename
 import tkcolorpicker
 
+def zentrieren(w,h,root):
+    ws = root.winfo_screenwidth()
+    hs = root.winfo_screenheight()
+    x = (ws/2) - (w/2)
+    y = (hs/2) - (h/2)
+    root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 def wortliste():
     global wort_liste
@@ -108,14 +114,14 @@ def pw_compare(passwort):
         if passwoerter == passwort:
             warnung = tk.Tk()
             warnung.title("     Info")
-            warnung.geometry("280x120")
+            zentrieren(w=280, h=120, root=warnung)
             warnung.configure(bg=farbe)
-            ausgabe3 = "Ihr Passwort ist in Ihrer Rainbow-Table enthalten"
+            ausgabe3 = "Ihr Passwort ist in Ihrer Rainbow-Table enthalten."
             label_info = tk.Label(master=warnung, text=ausgabe3, bg=farbe, fg=schriftfarbe)
             label_info.place(x=0, y=0, width=280, height=40)
             button_close = tk.Button(master=warnung, text="Schließen", bg=buttfarbe, fg=schriftfarbe,
                                      command=warnung.destroy)
-            button_close.place(x=60, y=50, width=120, height=40)
+            button_close.place(x=80, y=60, width=120, height=40)
             break
     liste.close()
 
@@ -134,7 +140,7 @@ ausgabe = tk.StringVar()  # Der Wert der ausgabe
 # Fenster
 icon = tk.PhotoImage(file='ICON.png')  # Das ICON in der oberen linken Ecke
 fenster.title("     Hasher")
-fenster.geometry("1280x720")
+zentrieren(w=1280, h=720, root= fenster)
 fenster.iconphoto(False, icon)
 fenster.configure(bg=farbe)
 
